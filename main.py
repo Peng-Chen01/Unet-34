@@ -23,9 +23,9 @@ print("Device:", device)
 # Config
 # =========================================================
 
-X_DIR = "/home/dante/code/Unet24_jamming/Dataset/data_train_unet/X"
+X_DIR = "/workspace/data_train_unet_v3/X"
 
-Y_DIR = "/home/dante/code/Unet24_jamming/Dataset/data_train_unet/Y"
+Y_DIR = "/workspace/data_train_unet_v3/Y"
 
 SAVE_DIR = "./training_logs"
 
@@ -319,11 +319,12 @@ for epoch in range(EPOCHS):
     # =====================================================
     # GT + Prediction
     # =====================================================
+    rows = NUM_CLASSES
+    cols = 2
 
     for c in range(NUM_CLASSES):
-
         # GT
-        plt.subplot(5,3,c+2)
+        plt.subplot(rows, cols, c * 2 + 1)
 
         plt.title(f"GT Class {c}")
 
@@ -336,7 +337,7 @@ for epoch in range(EPOCHS):
         plt.colorbar()
 
         # Prediction
-        plt.subplot(5,3,c+2+NUM_CLASSES)
+        plt.subplot(rows, cols, c * 2 + 2)
 
         plt.title(f"Pred Class {c}")
 
@@ -345,20 +346,17 @@ for epoch in range(EPOCHS):
             aspect='auto',
             cmap='jet'
         )
-
         plt.colorbar()
+        plt.tight_layout()
 
-    plt.tight_layout()
-
-    fig.savefig(
-        os.path.join(
-            SAVE_DIR,
-            f"epoch_{epoch}.png"
+        fig.savefig(
+            os.path.join(
+                SAVE_DIR,
+                f"epoch_{epoch}.png"
+            )
         )
-    )
 
-    plt.close(fig)
-
+        plt.close(fig)
     torch.cuda.empty_cache()
 
 # =========================================================

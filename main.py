@@ -29,11 +29,11 @@ Y_DIR = "/home/dante/code/Unet24_jamming/Dataset/data_train_unet/Y"
 
 SAVE_DIR = "./training_logs"
 
-NUM_CLASSES = 7
+NUM_CLASSES = 6
 
 BATCH_SIZE = 8
 
-EPOCHS = 100
+EPOCHS = 32
 
 LR = 3e-4
 

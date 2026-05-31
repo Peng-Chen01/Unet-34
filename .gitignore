@@ -1,0 +1,13 @@
+training_logs/
+*.pth
+*.pt
+*.ckpt
+
+Dataset/
+
+__pycache__/
+*.pyc
+
+.idea/
+.vscode/
+
